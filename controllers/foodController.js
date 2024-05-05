@@ -18,7 +18,7 @@ module.exports.createFoodController = async (req, res) => {
     } = req.body;
     //validation
     if (!title || !description || !price || !restaurent) {
-      return res.status(500).send({
+      return res.status(400).send({
         success: false,
         message: "Please Provide All fields",
       });
@@ -48,6 +48,31 @@ module.exports.createFoodController = async (req, res) => {
     res.status(500).send({
       success: false,
       message: "Error in Create Food Api",
+    });
+  }
+};
+
+//get all food
+module.exports.getAllFoodsController = async (req, res) => {
+  try {
+    const foods = await foodModel.find({});
+    if (!foods) {
+      return res.status(404).send({
+        success: false,
+        message: "no food item was found",
+      });
+    }
+    res.status(200).send({
+      success: true,
+      totalFoods: foods.length,
+      foods,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      success: false,
+      message: "Error in get All food API",
+      err: err,
     });
   }
 };
