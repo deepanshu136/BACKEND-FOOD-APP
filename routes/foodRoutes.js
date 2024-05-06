@@ -8,6 +8,7 @@ const {
   updateFoodController,
   deleteFoodController,
   placeOrderController,
+  orderStatusController,
 } = require("../controllers/foodController");
 const router = express.Router();
 

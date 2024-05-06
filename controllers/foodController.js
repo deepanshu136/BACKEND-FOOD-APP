@@ -269,7 +269,7 @@ module.exports.placeOrderController = async (req, res) => {
 };
 
 // CHANGE ORDER STATUS
-const orderStatusController = async (req, res) => {
+module.exports.orderStatusController = async (req, res) => {
   try {
     const orderId = req.params.id;
     if (!orderId) {
